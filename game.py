@@ -1,25 +1,27 @@
 import pygame
+from pygame.draw import rect
 
 pygame.init()
 
 width = 800
-height = 500 
+height = 500
+
+
+img = pygame.image.load('data/person.png')
+pygame.display.set_icon(img)
 
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Astro")
-
-
-font = pygame.font.SysFont("arial",  25, bold = pygame.font.Font.bold)
+font = pygame.font.SysFont("arial",  20, bold = pygame.font.Font.bold)
 
 black = (0, 0, 0)
 white = (255, 255, 255)
-
-brick = pygame.image.load("data/brick.png")
-
-brickX = 100
-brickY = 100
-
 backgroundcolor = (93, 115, 240)
+brick = pygame.image.load("data/brick.png")
+rect = brick.get_rect()
+rect.center = (32, 22)
+
+
 
 
 player = pygame.image.load("data/person.png")
@@ -39,8 +41,7 @@ move_up2 = False
 running = True
 
 
-whole_text = ("Player 1 XY: ", playerX, " ", playerY, "Player 2 XY: ", player2X, " ", player2Y)
-
+whole_text = ("Player 1: X: ", playerX, "Y: ", playerY, "Player 2: X: ", player2X, "Y: ", player2Y)
 text = font.render(str(whole_text), True, white, backgroundcolor)
 
 
@@ -51,14 +52,12 @@ def person():
 def person2():
     screen.blit(player2, (player2X, player2Y))
 def bricked():
-    screen.blit(brick, (brickX, brickY))
+    screen.blit(brick, rect)
 
 while running:
-    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 move_left = True
@@ -142,9 +141,9 @@ while running:
     bricked()
     person()
     person2()
-    whole_text = ('Player 1 XY: ', playerX, playerY, 'Player 2 XY: ', player2X, player2Y)
+    whole_text = ("Player 1: X: ", playerX, "Y: ", playerY, "Player 2: X: ", player2X, "Y: ", player2Y)
     text = font.render(str(whole_text), True, white, backgroundcolor)
-    screen.blit(text, ((75), height - 50))
+    screen.blit(text, ((50), height - 50))
     
     
     
