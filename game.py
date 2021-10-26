@@ -1,11 +1,27 @@
+from typing import Tuple
 import pygame
 
 pygame.init()
- 
-pygame.mixer
 
-screen = pygame.display.set_mode((800, 500))
-pygame.display.set_caption("Nik The Game")
+width = 800
+height = 500 
+
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Astro")
+
+
+font = pygame.font.SysFont("arial",  25, bold = pygame.font.Font.bold)
+
+black = (0, 0, 0)
+white = (255, 255, 255)
+
+brick = pygame.image.load("brick.png")
+
+brickX = 100
+brickY = 100
+
+backgroundcolor = (93, 115, 240)
+
 
 player = pygame.image.load("person.png")
 player2 = pygame.image.load("person.png")
@@ -23,10 +39,20 @@ move_down2 = False
 move_up2 = False
 running = True
 
+
+whole_text = ("Player 1 XY: ", playerX, " ", playerY, "Player 2 XY: ", player2X, " ", player2Y)
+
+text = font.render(str(whole_text), True, white, backgroundcolor)
+
+
+
+
 def person():
     screen.blit(player, (playerX, playerY))
 def person2():
     screen.blit(player2, (player2X, player2Y))
+def bricked():
+    screen.blit(brick, (brickX, brickY))
 
 while running:
     
@@ -109,9 +135,20 @@ while running:
     if player2X <= 0:
         player2X = 10
 
-    screen.fill((93, 115, 240))
 
+
+
+    screen.fill(backgroundcolor)
+
+    bricked()
     person()
     person2()
+    whole_text = ('Player 1 XY: ', playerX, playerY, 'Player 2 XY: ', player2X, player2Y)
+    text = font.render(str(whole_text), True, white, backgroundcolor)
+    screen.blit(text, ((75), height - 50))
+    
+    
+    
 
+    
     pygame.display.update()
