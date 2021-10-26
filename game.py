@@ -15,7 +15,7 @@ font = pygame.font.SysFont("arial",  25, bold = pygame.font.Font.bold)
 black = (0, 0, 0)
 white = (255, 255, 255)
 
-brick = pygame.image.load("brick.png")
+brick = pygame.image.load("data/brick.png")
 
 brickX = 100
 brickY = 100
@@ -23,8 +23,8 @@ brickY = 100
 backgroundcolor = (93, 115, 240)
 
 
-player = pygame.image.load("person.png")
-player2 = pygame.image.load("person.png")
+player = pygame.image.load("data/person.png")
+player2 = pygame.image.load("data/person.png")
 playerX = 380
 playerY = 250
 player2X = 420
