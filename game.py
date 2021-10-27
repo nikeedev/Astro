@@ -1,5 +1,5 @@
 import pygame
-from pygame.draw import rect
+
 
 pygame.init()
 
