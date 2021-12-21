@@ -1,28 +1,23 @@
 import pygame
 
-
 pygame.init()
 
 width = 800
 height = 500
-
 
 img = pygame.image.load('data/person.png')
 pygame.display.set_icon(img)
 
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Astro")
-font = pygame.font.SysFont("arial",  20, bold = pygame.font.Font.bold)
+font = pygame.font.SysFont("arial", 20, bold=pygame.font.Font.bold)
 
 black = (0, 0, 0)
 white = (255, 255, 255)
-backgroundcolor = (93, 115, 240)
+background_color = (93, 115, 240)
 brick = pygame.image.load("data/brick.png")
 rect = brick.get_rect()
 rect.center = (32, 22)
-
-
-
 
 player = pygame.image.load("data/person.png")
 player2 = pygame.image.load("data/person.png")
@@ -40,19 +35,21 @@ move_down2 = False
 move_up2 = False
 running = True
 
-
 whole_text = ("Player 1: X: ", playerX, "Y: ", playerY, "Player 2: X: ", player2X, "Y: ", player2Y)
-text = font.render(str(whole_text), True, white, backgroundcolor)
-
-
+text = font.render(str(whole_text), True, white, background_color)
 
 
 def person():
     screen.blit(player, (playerX, playerY))
+
+
 def person2():
     screen.blit(player2, (player2X, player2Y))
+
+
 def bricked():
     screen.blit(brick, rect)
+
 
 while running:
     for event in pygame.event.get():
@@ -69,14 +66,14 @@ while running:
                 move_up = True
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
-               move_left = False
+                move_left = False
             if event.key == pygame.K_RIGHT:
                 move_right = False
             if event.key == pygame.K_DOWN:
                 move_down = False
             if event.key == pygame.K_UP:
                 move_up = False
-        
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
                 move_left2 = True
@@ -96,7 +93,6 @@ while running:
             if event.key == pygame.K_w:
                 move_up2 = False
 
-    
     if move_right:
         playerX += 0.5
     if move_left:
@@ -118,35 +114,28 @@ while running:
     if playerY >= 480:
         playerY = 470
     if playerY <= 0:
-        playerY = 10 
+        playerY = 10
     if playerX >= 785:
         playerX = 775
     if playerX <= 0:
-        playerX = 10 
+        playerX = 10
 
     if player2Y >= 480:
         player2Y = 470
     if player2Y <= 0:
-        player2Y = 10 
+        player2Y = 10
     if player2X >= 785:
         player2X = 775
     if player2X <= 0:
         player2X = 10
 
-
-
-
-    screen.fill(backgroundcolor)
+    screen.fill(background_color)
 
     bricked()
     person()
     person2()
     whole_text = ("Player 1: X: ", playerX, "Y: ", playerY, "Player 2: X: ", player2X, "Y: ", player2Y)
-    text = font.render(str(whole_text), True, white, backgroundcolor)
+    text = font.render(str(whole_text), True, white, background_color)
     screen.blit(text, ((50), height - 50))
-    
-    
-    
 
-    
     pygame.display.update()
