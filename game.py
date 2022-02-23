@@ -14,16 +14,15 @@ font = pygame.font.SysFont("arial", 20, bold=pygame.font.Font.bold)
 
 black = (0, 0, 0)
 white = (255, 255, 255)
-background_color = (93, 115, 240)
+backgroundcolor = (93, 115, 240)
 brick = pygame.image.load("data/brick.png")
-brickX = brick.get_rect().x + 20
-brickY = brick.get_rect().y + 20
+rect = brick.get_rect()
+rect.center = (32, 22)
 
-
-player1 = pygame.image.load("data/person.png")
+player = pygame.image.load("data/person.png")
 player2 = pygame.image.load("data/person.png")
-player1X = 380
-player1Y = 250
+playerX = 380
+playerY = 250
 player2X = 420
 player2Y = 250
 move_right = False
@@ -35,22 +34,21 @@ move_left2 = False
 move_down2 = False
 move_up2 = False
 running = True
-colliding = False
 
-whole_text = ("Player 1: X: ", player1X, "Y: ", player1Y, "Player 2: X: ", player2X, "Y: ", player2Y)
-text = font.render(str(whole_text), True, white, background_color)
-
-
-def create_person():
-    screen.blit(player1, (player1X, player1Y))
+whole_text = ("Player 1: X: ", playerX, "Y: ", playerY, "Player 2: X: ", player2X, "Y: ", player2Y)
+text = font.render(str(whole_text), True, white, backgroundcolor)
 
 
-def create_person2():
+def person():
+    screen.blit(player, (playerX, playerY))
+
+
+def person2():
     screen.blit(player2, (player2X, player2Y))
 
 
-def create_brick():
-    screen.blit(brick, (brickX, brickY))
+def bricked():
+    screen.blit(brick, rect)
 
 
 while running:
@@ -96,13 +94,13 @@ while running:
                 move_up2 = False
 
     if move_right:
-        player1X += 0.5
+        playerX += 0.5
     if move_left:
-        player1X -= 0.5
+        playerX -= 0.5
     if move_up:
-        player1Y -= 0.5
+        playerY -= 0.5
     if move_down:
-        player1Y += 0.5
+        playerY += 0.5
 
     if move_right2:
         player2X += 0.5
@@ -113,14 +111,14 @@ while running:
     if move_down2:
         player2Y += 0.5
 
-    if player1Y >= 480:
-        player1Y = 470
-    if player1Y <= 0:
-        player1Y = 10
-    if player1X >= 785:
-        player1X = 775
-    if player1X <= 0:
-        player1X = 10
+    if playerY >= 480:
+        playerY = 470
+    if playerY <= 0:
+        playerY = 10
+    if playerX >= 785:
+        playerX = 775
+    if playerX <= 0:
+        playerX = 10
 
     if player2Y >= 480:
         player2Y = 470
@@ -131,13 +129,13 @@ while running:
     if player2X <= 0:
         player2X = 10
 
-    screen.fill(background_color)
+    screen.fill(backgroundcolor)
 
-    create_brick()
-    create_person()
-    create_person2()
-    whole_text = ("Player 1: X: ", player1X, "Y: ", player1Y, "Player 2: X: ", player2X, "Y: ", player2Y)
-    text = font.render(str(whole_text), True, white, background_color)
+    bricked()
+    person()
+    person2()
+    whole_text = ("Player 1: X: ", playerX, "Y: ", playerY, "Player 2: X: ", player2X, "Y: ", player2Y)
+    text = font.render(str(whole_text), True, white, backgroundcolor)
     screen.blit(text, (50, height - 50))
 
     pygame.display.update()
